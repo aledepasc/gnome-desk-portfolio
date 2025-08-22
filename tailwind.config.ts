@@ -52,6 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// GNOME-specific colors
+				'desktop-bg': 'hsl(var(--desktop-background))',
+				'window-bg': 'hsl(var(--window-background))',
+				'topbar-bg': 'hsl(var(--topbar-background))',
+				'topbar-fg': 'hsl(var(--topbar-foreground))',
+				'icon-hover': 'hsl(var(--icon-hover))',
+				'window-border': 'hsl(var(--window-border))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +91,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'window-appear': {
+					from: {
+						transform: 'scale(0.9) translateY(10px)',
+						opacity: '0'
+					},
+					to: {
+						transform: 'scale(1) translateY(0)',
+						opacity: '1'
+					}
+				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'window-appear': 'window-appear 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+				'fade-in': 'fade-in 0.15s ease-out'
+			},
+			backgroundImage: {
+				'gradient-desktop': 'var(--gradient-desktop)',
+				'gradient-window': 'var(--gradient-window)'
+			},
+			boxShadow: {
+				'window': 'var(--shadow-window)',
+				'subtle': 'var(--shadow-subtle)',
+				'icon': 'var(--shadow-icon)'
 			}
 		}
 	},
