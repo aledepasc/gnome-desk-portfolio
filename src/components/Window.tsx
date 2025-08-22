@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, ReactNode } from "react";
 import { X, Minus, Square } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WindowProps {
   title: string;
@@ -33,6 +34,7 @@ export const Window = ({
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // Handle dragging
   useEffect(() => {
@@ -71,7 +73,7 @@ export const Window = ({
   }, [isDragging, isResizing, dragOffset, resizeStart, onMove, onResize]);
 
   const handleTitleBarMouseDown = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget || (e.target as HTMLElement).classList.contains('window-title')) {
+    if (!isMobile && (e.target === e.currentTarget || (e.target as HTMLElement).classList.contains('window-title'))) {
       onMouseDown();
       setIsDragging(true);
       setDragOffset({
@@ -82,14 +84,16 @@ export const Window = ({
   };
 
   const handleResizeMouseDown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsResizing(true);
-    setResizeStart({
-      x: e.clientX,
-      y: e.clientY,
-      width: size.width,
-      height: size.height,
-    });
+    if (!isMobile) {
+      e.stopPropagation();
+      setIsResizing(true);
+      setResizeStart({
+        x: e.clientX,
+        y: e.clientY,
+        width: size.width,
+        height: size.height,
+      });
+    }
   };
 
   return (
@@ -107,7 +111,7 @@ export const Window = ({
     >
       {/* Title Bar */}
       <div
-        className="h-12 bg-gradient-window border-b border-window-border rounded-t-lg flex items-center justify-between px-4 cursor-move select-none"
+        className={`h-12 bg-gradient-window border-b border-window-border rounded-t-lg flex items-center justify-between px-4 ${!isMobile ? 'cursor-move' : ''} select-none`}
         onMouseDown={handleTitleBarMouseDown}
       >
         <div className="window-title text-sm font-medium text-foreground flex-1">
@@ -118,24 +122,24 @@ export const Window = ({
         <div className="flex gap-2 ml-4">
           <button
             onClick={onMinimize}
-            className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"
+            className={`${isMobile ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors`}
             title="Minimize"
           >
-            <Minus size={8} className="text-yellow-800 opacity-0 hover:opacity-100 transition-opacity" />
+            <Minus size={isMobile ? 10 : 8} className="text-yellow-800 opacity-0 hover:opacity-100 transition-opacity" />
           </button>
           <button
             onClick={onMaximize}
-            className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
+            className={`${isMobile ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-500 hover:bg-green-600 transition-colors`}
             title="Maximize"
           >
-            <Square size={8} className="text-green-800 opacity-0 hover:opacity-100 transition-opacity" />
+            <Square size={isMobile ? 10 : 8} className="text-green-800 opacity-0 hover:opacity-100 transition-opacity" />
           </button>
           <button
             onClick={onClose}
-            className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors"
+            className={`${isMobile ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-red-500 hover:bg-red-600 transition-colors`}
             title="Close"
           >
-            <X size={8} className="text-red-800 opacity-0 hover:opacity-100 transition-opacity" />
+            <X size={isMobile ? 10 : 8} className="text-red-800 opacity-0 hover:opacity-100 transition-opacity" />
           </button>
         </div>
       </div>
@@ -145,13 +149,15 @@ export const Window = ({
         {children}
       </div>
 
-      {/* Resize Handle */}
-      <div
-        className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
-        onMouseDown={handleResizeMouseDown}
-      >
-        <div className="absolute bottom-1 right-1 w-2 h-2 border-r-2 border-b-2 border-muted-foreground opacity-50"></div>
-      </div>
+      {/* Resize Handle - Hide on mobile */}
+      {!isMobile && (
+        <div
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize"
+          onMouseDown={handleResizeMouseDown}
+        >
+          <div className="absolute bottom-1 right-1 w-2 h-2 border-r-2 border-b-2 border-muted-foreground opacity-50"></div>
+        </div>
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { ExperienceWindow } from "./windows/ExperienceWindow";
 import { TerminalWindow } from "./windows/TerminalWindow";
 import { ProjectsWindow } from "./windows/ProjectsWindow";
 import { Monitor, Github, Linkedin } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import wallpaper from "@/assets/gnome-wallpaper.jpg";
 
 export type WindowType = 'personal' | 'contact' | 'skills' | 'experience' | 'terminal' | 'projects';
@@ -28,6 +29,7 @@ export const Desktop = () => {
   const [windows, setWindows] = useState<OpenWindow[]>([]);
   const [showApplicationsMenu, setShowApplicationsMenu] = useState(false);
   const [nextZIndex, setNextZIndex] = useState(100);
+  const isMobile = useIsMobile();
 
   const openWindow = (type: WindowType, title: string) => {
     // Check if window is already open
@@ -43,13 +45,32 @@ export const Desktop = () => {
       return;
     }
 
+    // Mobile-responsive window sizing and positioning
+    const getWindowConfig = () => {
+      if (isMobile) {
+        return {
+          position: { x: 10, y: 58 },
+          size: { 
+            width: window.innerWidth - 20, 
+            height: window.innerHeight - 78
+          }
+        };
+      }
+      
+      return {
+        position: { x: 100 + windows.length * 30, y: 80 + windows.length * 30 },
+        size: type === 'terminal' ? { width: 700, height: 500 } : { width: 600, height: 450 }
+      };
+    };
+
+    const config = getWindowConfig();
     const newWindow: OpenWindow = {
       id: `${type}-${Date.now()}`,
       type,
       title,
       isMinimized: false,
-      position: { x: 100 + windows.length * 30, y: 80 + windows.length * 30 },
-      size: type === 'terminal' ? { width: 700, height: 500 } : { width: 600, height: 450 },
+      position: config.position,
+      size: config.size,
       zIndex: nextZIndex,
     };
 
@@ -68,12 +89,16 @@ export const Desktop = () => {
   };
 
   const maximizeWindow = (id: string) => {
+    const topBarHeight = isMobile ? 58 : 48;
     setWindows(windows.map(w => 
       w.id === id 
         ? { 
             ...w, 
-            position: { x: 0, y: 48 },
-            size: { width: window.innerWidth, height: window.innerHeight - 48 }
+            position: { x: 0, y: topBarHeight },
+            size: { 
+              width: window.innerWidth, 
+              height: window.innerHeight - topBarHeight 
+            }
           } 
         : w
     ));
@@ -136,21 +161,24 @@ export const Desktop = () => {
       )}
 
       {/* Desktop Icons */}
-      <div className="absolute top-20 left-6 grid gap-6">
+      <div className={`absolute ${isMobile ? 'top-16 left-4 flex gap-4' : 'top-20 left-6 grid gap-6'}`}>
         <DesktopIcon
           icon={Monitor}
           label="Projects"
           onClick={() => openWindow('projects', 'My Projects')}
+          size={isMobile ? 'sm' : 'default'}
         />
         <DesktopIcon
           icon={Github}
           label="GitHub"
           onClick={() => window.open('https://github.com/username', '_blank')}
+          size={isMobile ? 'sm' : 'default'}
         />
         <DesktopIcon
           icon={Linkedin}
           label="LinkedIn"
           onClick={() => window.open('https://linkedin.com/in/username', '_blank')}
+          size={isMobile ? 'sm' : 'default'}
         />
       </div>
 
@@ -175,14 +203,14 @@ export const Desktop = () => {
 
       {/* Taskbar (minimized windows) */}
       {windows.filter(w => w.isMinimized).length > 0 && (
-        <div className="absolute bottom-4 left-4 flex gap-2">
+        <div className={`absolute bottom-4 left-4 flex gap-2 ${isMobile ? 'flex-wrap max-w-[calc(100vw-2rem)]' : ''}`}>
           {windows.filter(w => w.isMinimized).map(window => (
             <button
               key={window.id}
               onClick={() => updateWindow(window.id, { isMinimized: false })}
-              className="px-4 py-2 bg-topbar-bg text-topbar-fg rounded shadow-subtle hover:bg-opacity-80 transition-all"
+              className={`${isMobile ? 'px-2 py-1 text-sm' : 'px-4 py-2'} bg-topbar-bg text-topbar-fg rounded shadow-subtle hover:bg-opacity-80 transition-all`}
             >
-              {window.title}
+              {isMobile ? window.title.substring(0, 8) + '...' : window.title}
             </button>
           ))}
         </div>

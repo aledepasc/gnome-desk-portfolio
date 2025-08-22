@@ -1,5 +1,6 @@
 import { User, Mail, Code, Briefcase, Terminal } from "lucide-react";
 import { WindowType } from "./Desktop";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ApplicationsMenuProps {
   onClose: () => void;
@@ -15,6 +16,8 @@ const menuItems = [
 ];
 
 export const ApplicationsMenu = ({ onClose, onOpenWindow }: ApplicationsMenuProps) => {
+  const isMobile = useIsMobile();
+  
   const handleItemClick = (type: WindowType, title: string) => {
     onOpenWindow(type, title);
     onClose();
@@ -29,11 +32,11 @@ export const ApplicationsMenu = ({ onClose, onOpenWindow }: ApplicationsMenuProp
       />
       
       {/* Menu */}
-      <div className="absolute top-12 left-4 z-50 w-80 bg-window-bg rounded-lg shadow-window border border-window-border animate-window-appear">
+      <div className={`absolute ${isMobile ? 'top-14 left-2 right-2 w-auto' : 'top-12 left-4 w-80'} z-50 bg-window-bg rounded-lg shadow-window border border-window-border animate-window-appear`}>
         <div className="p-4">
           <h3 className="text-lg font-semibold text-foreground mb-4">Applications</h3>
           
-          <div className="grid gap-2">
+          <div className={`grid gap-2 ${isMobile ? 'grid-cols-1' : ''}`}>
             {menuItems.map((item) => (
               <button
                 key={item.type}
@@ -45,7 +48,7 @@ export const ApplicationsMenu = ({ onClose, onOpenWindow }: ApplicationsMenuProp
                 </div>
                 <div className="flex-1">
                   <div className="font-medium text-foreground">{item.title}</div>
-                  <div className="text-sm text-muted-foreground">{item.description}</div>
+                  {!isMobile && <div className="text-sm text-muted-foreground">{item.description}</div>}
                 </div>
               </button>
             ))}
