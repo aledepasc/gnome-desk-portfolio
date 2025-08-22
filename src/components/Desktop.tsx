@@ -9,11 +9,12 @@ import { SkillsWindow } from "./windows/SkillsWindow";
 import { ExperienceWindow } from "./windows/ExperienceWindow";
 import { TerminalWindow } from "./windows/TerminalWindow";
 import { ProjectsWindow } from "./windows/ProjectsWindow";
+import { GalleryWindow } from "./windows/GalleryWindow";
 import { Monitor, Github, Linkedin } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import wallpaper from "@/assets/gnome-wallpaper.jpg";
 
-export type WindowType = 'personal' | 'contact' | 'skills' | 'experience' | 'terminal' | 'projects';
+export type WindowType = 'personal' | 'contact' | 'skills' | 'experience' | 'terminal' | 'projects' | 'gallery';
 
 interface OpenWindow {
   id: string;
@@ -131,6 +132,8 @@ export const Desktop = () => {
         return <TerminalWindow />;
       case 'projects':
         return <ProjectsWindow />;
+      case 'gallery':
+        return <GalleryWindow />;
       default:
         return <div>Window content</div>;
     }

@@ -1,4 +1,4 @@
-import { User, Mail, Code, Briefcase, Terminal } from "lucide-react";
+import { User, Mail, Code, Briefcase, Terminal, Image } from "lucide-react";
 import { WindowType } from "./Desktop";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -12,6 +12,7 @@ const menuItems = [
   { type: 'contact' as WindowType, title: 'Contact', icon: Mail, description: 'Get in touch' },
   { type: 'skills' as WindowType, title: 'Skills', icon: Code, description: 'Technical skills' },
   { type: 'experience' as WindowType, title: 'Experience', icon: Briefcase, description: 'Work history' },
+  { type: 'gallery' as WindowType, title: 'Gallery', icon: Image, description: 'Photo collection' },
   { type: 'terminal' as WindowType, title: 'Terminal', icon: Terminal, description: 'Resume CLI' },
 ];
 
