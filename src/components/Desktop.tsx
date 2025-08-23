@@ -21,9 +21,14 @@ interface OpenWindow {
   type: WindowType;
   title: string;
   isMinimized: boolean;
+  isMaximized: boolean;
   position: { x: number; y: number };
   size: { width: number; height: number };
   zIndex: number;
+  previousState?: {
+    position: { x: number; y: number };
+    size: { width: number; height: number };
+  };
 }
 
 export const Desktop = () => {
@@ -70,6 +75,7 @@ export const Desktop = () => {
       type,
       title,
       isMinimized: false,
+      isMaximized: false,
       position: config.position,
       size: config.size,
       zIndex: nextZIndex,
@@ -91,18 +97,35 @@ export const Desktop = () => {
 
   const maximizeWindow = (id: string) => {
     const topBarHeight = isMobile ? 58 : 48;
-    setWindows(windows.map(w => 
-      w.id === id 
-        ? { 
-            ...w, 
-            position: { x: 0, y: topBarHeight },
-            size: { 
-              width: window.innerWidth, 
-              height: window.innerHeight - topBarHeight 
-            }
-          } 
-        : w
-    ));
+    setWindows(windows.map(w => {
+      if (w.id !== id) return w;
+      
+      if (w.isMaximized) {
+        // Restore to previous state
+        return {
+          ...w,
+          isMaximized: false,
+          position: w.previousState?.position || w.position,
+          size: w.previousState?.size || w.size,
+          previousState: undefined
+        };
+      } else {
+        // Maximize
+        return {
+          ...w,
+          isMaximized: true,
+          previousState: {
+            position: w.position,
+            size: w.size
+          },
+          position: { x: 0, y: topBarHeight },
+          size: { 
+            width: window.innerWidth, 
+            height: window.innerHeight - topBarHeight 
+          }
+        };
+      }
+    }));
   };
 
   const updateWindow = (id: string, updates: Partial<OpenWindow>) => {
@@ -205,6 +228,7 @@ export const Desktop = () => {
           position={window.position}
           size={window.size}
           zIndex={window.zIndex}
+          isMaximized={window.isMaximized}
           onClose={() => closeWindow(window.id)}
           onMinimize={() => minimizeWindow(window.id)}
           onMaximize={() => maximizeWindow(window.id)}

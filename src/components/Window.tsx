@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, ReactNode } from "react";
-import { X, Minus, Square } from "lucide-react";
+import { X, Minus, Square, Maximize2 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface WindowProps {
@@ -8,6 +8,7 @@ interface WindowProps {
   position: { x: number; y: number };
   size: { width: number; height: number };
   zIndex: number;
+  isMaximized?: boolean;
   onClose: () => void;
   onMinimize: () => void;
   onMaximize: () => void;
@@ -22,6 +23,7 @@ export const Window = ({
   position,
   size,
   zIndex,
+  isMaximized = false,
   onClose,
   onMinimize,
   onMaximize,
@@ -130,9 +132,13 @@ export const Window = ({
           <button
             onClick={onMaximize}
             className={`${isMobile ? 'w-4 h-4' : 'w-3 h-3'} rounded-full bg-green-500 hover:bg-green-600 transition-colors`}
-            title="Maximize"
+            title={isMaximized ? "Restore" : "Maximize"}
           >
-            <Square size={isMobile ? 10 : 8} className="text-green-800 opacity-0 hover:opacity-100 transition-opacity" />
+            {isMaximized ? (
+              <Maximize2 size={isMobile ? 10 : 8} className="text-green-800 opacity-0 hover:opacity-100 transition-opacity" />
+            ) : (
+              <Square size={isMobile ? 10 : 8} className="text-green-800 opacity-0 hover:opacity-100 transition-opacity" />
+            )}
           </button>
           <button
             onClick={onClose}
