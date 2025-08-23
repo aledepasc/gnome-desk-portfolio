@@ -9,7 +9,7 @@ import landscape2 from "@/assets/gallery/landscape2.jpg";
 import sculpture1 from "@/assets/gallery/sculpture1.jpg";
 import sculpture2 from "@/assets/gallery/sculpture2.jpg";
 
-type Category = 'all' | 'street photography' | 'landscape' | 'sculpture';
+type Category = 'street photography' | 'landscape' | 'sculpture';
 
 interface Photo {
   id: string;
@@ -57,15 +57,12 @@ const photos: Photo[] = [
   }
 ];
 
-const categories: Category[] = ['all', 'street photography', 'landscape', 'sculpture'];
+const categories: Category[] = ['street photography', 'landscape', 'sculpture'];
 
 export const GalleryWindow = () => {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category>('street photography');
 
-  const filteredPhotos = selectedCategory === 'all' 
-    ? photos 
-    : photos.filter(photo => photo.category === selectedCategory);
+  const filteredPhotos = photos.filter(photo => photo.category === selectedCategory);
 
   return (
     <div className="p-6 h-full flex flex-col">
@@ -95,14 +92,13 @@ export const GalleryWindow = () => {
         {filteredPhotos.map((photo) => (
           <div
             key={photo.id}
-            className="group cursor-pointer rounded-lg overflow-hidden bg-muted hover:bg-muted/80 transition-colors"
-            onClick={() => setSelectedPhoto(photo)}
+            className="rounded-lg overflow-hidden bg-muted"
           >
-            <div className="aspect-square overflow-hidden">
+            <div className="aspect-[3/4] overflow-hidden">
               <img
                 src={photo.src}
                 alt={photo.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="p-3">
@@ -114,35 +110,6 @@ export const GalleryWindow = () => {
           </div>
         ))}
       </div>
-
-      {/* Photo Modal */}
-      {selectedPhoto && (
-        <div 
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedPhoto(null)}
-        >
-          <div className="relative max-w-4xl max-h-full">
-            <img
-              src={selectedPhoto.src}
-              alt={selectedPhoto.title}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-            <div className="absolute bottom-4 left-4 bg-black/60 text-white px-4 py-2 rounded-lg">
-              <h3 className="font-medium">{selectedPhoto.title}</h3>
-              <p className="text-sm opacity-80 capitalize">{selectedPhoto.category}</p>
-            </div>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedPhoto(null);
-              }}
-              className="absolute top-4 right-4 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
-            >
-              ×
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
