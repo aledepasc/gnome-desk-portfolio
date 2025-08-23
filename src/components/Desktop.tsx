@@ -10,7 +10,7 @@ import { ExperienceWindow } from "./windows/ExperienceWindow";
 import { TerminalWindow } from "./windows/TerminalWindow";
 import { ProjectsWindow } from "./windows/ProjectsWindow";
 import { GalleryWindow } from "./windows/GalleryWindow";
-import { Monitor, Github, Linkedin } from "lucide-react";
+import { Monitor, Mail, Code, Briefcase, Image } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import wallpaper from "@/assets/gnome-wallpaper.jpg";
 
@@ -164,7 +164,7 @@ export const Desktop = () => {
       )}
 
       {/* Desktop Icons */}
-      <div className={`absolute ${isMobile ? 'top-16 left-4 flex gap-4' : 'top-20 left-6 grid gap-6'}`}>
+      <div className={`absolute ${isMobile ? 'top-16 left-4 flex flex-wrap gap-4' : 'top-20 left-6 grid grid-cols-2 gap-6'}`}>
         <DesktopIcon
           icon={Monitor}
           label="Projects"
@@ -172,15 +172,27 @@ export const Desktop = () => {
           size={isMobile ? 'sm' : 'default'}
         />
         <DesktopIcon
-          icon={Github}
-          label="GitHub"
-          onClick={() => window.open('https://github.com/username', '_blank')}
+          icon={Mail}
+          label="Contact"
+          onClick={() => openWindow('contact', 'Contact')}
           size={isMobile ? 'sm' : 'default'}
         />
         <DesktopIcon
-          icon={Linkedin}
-          label="LinkedIn"
-          onClick={() => window.open('https://linkedin.com/in/username', '_blank')}
+          icon={Code}
+          label="Skills"
+          onClick={() => openWindow('skills', 'Skills')}
+          size={isMobile ? 'sm' : 'default'}
+        />
+        <DesktopIcon
+          icon={Briefcase}
+          label="Experience"
+          onClick={() => openWindow('experience', 'Experience')}
+          size={isMobile ? 'sm' : 'default'}
+        />
+        <DesktopIcon
+          icon={Image}
+          label="Gallery"
+          onClick={() => openWindow('gallery', 'Gallery')}
           size={isMobile ? 'sm' : 'default'}
         />
       </div>
