@@ -98,7 +98,7 @@ export const GalleryWindow = () => {
               <img
                 src={photo.src}
                 alt={photo.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-muted"
               />
             </div>
             <div className="p-3">
