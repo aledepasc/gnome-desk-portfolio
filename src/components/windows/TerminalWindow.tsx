@@ -7,11 +7,6 @@ Personal Info:
 - LinkedIn: linkedin.com/in/username
 - GitHub: github.com/username
 
-Skills:
-- C#, TypeScript, JavaScript, SQL
-- .NET, Angular, React
-- Git, REST API, Entity Framework, Docker
-
 Experience:
 2023-Present: Freelance - Full Stack Developer
 2021-2023: Azienda XYZ - Software Developer  
@@ -26,7 +21,114 @@ Projects:
 - CRM Management System (Angular + C#)
 - API Gateway Microservices (Docker + Kubernetes)
 
+For detailed technical skills, use: skills [category]
+Available categories: frontend, backend, database, devops, tools
+
 Contact me for collaboration opportunities!`;
+
+const technicalSkills = {
+  frontend: `Frontend Development:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Languages & Frameworks:
+  ▶ JavaScript (ES6+)     │ Advanced proficiency
+  ▶ TypeScript           │ Advanced proficiency  
+  ▶ React.js             │ Expert level
+  ▶ Angular              │ Advanced proficiency
+  ▶ Vue.js               │ Intermediate level
+  ▶ HTML5 & CSS3         │ Expert level
+
+Styling & UI:
+  ▶ Tailwind CSS         │ Advanced proficiency
+  ▶ Sass/SCSS           │ Advanced proficiency
+  ▶ Bootstrap            │ Advanced proficiency
+  ▶ Material UI          │ Intermediate level
+  ▶ Styled Components    │ Advanced proficiency
+
+State Management:
+  ▶ Redux/Redux Toolkit  │ Advanced proficiency
+  ▶ Zustand             │ Intermediate level
+  ▶ Context API          │ Advanced proficiency`,
+
+  backend: `Backend Development:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Languages & Frameworks:
+  ▶ C# (.NET Core)       │ Expert level
+  ▶ Node.js              │ Advanced proficiency
+  ▶ Python               │ Intermediate level
+  ▶ Java                 │ Intermediate level
+
+API Development:
+  ▶ REST APIs            │ Expert level
+  ▶ GraphQL              │ Intermediate level
+  ▶ WebSockets           │ Advanced proficiency
+  ▶ Microservices        │ Advanced proficiency
+
+Authentication & Security:
+  ▶ JWT                  │ Advanced proficiency
+  ▶ OAuth 2.0            │ Advanced proficiency
+  ▶ Identity Server      │ Intermediate level`,
+
+  database: `Database Technologies:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Relational Databases:
+  ▶ SQL Server           │ Expert level
+  ▶ PostgreSQL           │ Advanced proficiency
+  ▶ MySQL               │ Advanced proficiency
+  ▶ SQLite              │ Advanced proficiency
+
+NoSQL Databases:
+  ▶ MongoDB             │ Intermediate level
+  ▶ Redis               │ Intermediate level
+
+ORM & Query Tools:
+  ▶ Entity Framework    │ Expert level
+  ▶ Prisma              │ Intermediate level
+  ▶ LINQ                │ Expert level`,
+
+  devops: `DevOps & Cloud:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Containerization:
+  ▶ Docker              │ Advanced proficiency
+  ▶ Kubernetes          │ Intermediate level
+  ▶ Docker Compose      │ Advanced proficiency
+
+Cloud Platforms:
+  ▶ Microsoft Azure     │ Advanced proficiency
+  ▶ AWS                 │ Intermediate level
+  ▶ Vercel              │ Advanced proficiency
+
+CI/CD & Automation:
+  ▶ GitHub Actions      │ Advanced proficiency
+  ▶ Azure DevOps        │ Advanced proficiency
+  ▶ Jenkins             │ Intermediate level`,
+
+  tools: `Development Tools:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Version Control:
+  ▶ Git                 │ Expert level
+  ▶ GitHub              │ Expert level
+  ▶ GitLab              │ Advanced proficiency
+
+Development Environment:
+  ▶ Visual Studio       │ Expert level
+  ▶ VS Code             │ Expert level
+  ▶ JetBrains IDEs      │ Intermediate level
+
+Project Management:
+  ▶ Jira                │ Advanced proficiency
+  ▶ Trello              │ Advanced proficiency
+  ▶ Azure Boards        │ Advanced proficiency
+
+Testing:
+  ▶ Jest                │ Advanced proficiency
+  ▶ MSTest              │ Advanced proficiency
+  ▶ Cypress             │ Intermediate level`
+};
 
 const movieQuotes = {
   "may the force be with you": `
@@ -100,16 +202,32 @@ const movieQuotes = {
 
 const commands = {
   help: `Available commands:
-  cat resume.txt    - Display resume
-  ls               - List files
-  pwd              - Show current directory
-  whoami           - Show current user
-  clear            - Clear terminal
-  neofetch         - System information
-  quotes           - Show available movie quotes
-  help             - Show this help
+  cat resume.txt       - Display resume
+  skills [category]    - Show technical skills by category
+                        Categories: frontend, backend, database, devops, tools
+  ls                   - List files
+  pwd                  - Show current directory
+  whoami               - Show current user
+  clear                - Clear terminal
+  neofetch             - System information
+  quotes               - Show available movie quotes
+  help                 - Show this help
   
   Try typing famous movie quotes for easter eggs!`,
+  
+  skills: `Technical Skills Categories:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Usage: skills [category]
+
+Available categories:
+  frontend  - Frontend Development (React, Angular, TypeScript...)
+  backend   - Backend Development (C#, Node.js, APIs...)
+  database  - Database Technologies (SQL Server, MongoDB...)
+  devops    - DevOps & Cloud (Docker, Azure, CI/CD...)
+  tools     - Development Tools (Git, VS Code, Testing...)
+
+Example: skills frontend`,
   
   quotes: `Available movie quotes (try typing them):
   - "may the force be with you"
@@ -166,6 +284,7 @@ export const TerminalWindow = () => {
 
   const handleCommand = (command: string) => {
     const cmd = command.trim().toLowerCase();
+    const [mainCmd, ...args] = cmd.split(' ');
     setHistory(prev => [...prev, { type: 'input', content: `edoardo@portfolio:~$ ${command}` }]);
     
     let output = '';
@@ -179,6 +298,17 @@ export const TerminalWindow = () => {
       setHistory([]);
       setCurrentInput('');
       return;
+    } else if (mainCmd === 'skills') {
+      if (args.length === 0) {
+        output = commands.skills;
+      } else {
+        const category = args[0];
+        if (technicalSkills[category as keyof typeof technicalSkills]) {
+          output = technicalSkills[category as keyof typeof technicalSkills];
+        } else {
+          output = `Skills category "${category}" not found.\nAvailable categories: frontend, backend, database, devops, tools\n\nType "skills" for more information.`;
+        }
+      }
     } else if (commands[cmd as keyof typeof commands]) {
       output = commands[cmd as keyof typeof commands];
     } else if (cmd === '') {
