@@ -1,39 +1,47 @@
-import { Progress } from "@/components/ui/progress";
-
 const skillCategories = [
   {
     category: "Linguaggi di Programmazione",
     skills: [
-      { name: "C#", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "JavaScript", level: 80 },
-      { name: "SQL", level: 75 },
+      { name: "C#", level: "Esperto" },
+      { name: "TypeScript", level: "Avanzato" },
+      { name: "JavaScript", level: "Avanzato" },
+      { name: "SQL", level: "Intermedio" },
+      { name: "Python", level: "Intermedio" },
     ]
   },
   {
     category: "Framework & Librerie",
     skills: [
-      { name: ".NET Core", level: 90 },
-      { name: "React", level: 85 },
-      { name: "Angular", level: 70 },
-      { name: "Entity Framework", level: 80 },
+      { name: ".NET Core", level: "Esperto" },
+      { name: "React", level: "Avanzato" },
+      { name: "Angular", level: "Intermedio" },
+      { name: "Entity Framework", level: "Avanzato" },
+      { name: "Node.js", level: "Intermedio" },
     ]
   },
   {
     category: "Tools & Tecnologie",
     skills: [
-      { name: "Git", level: 85 },
-      { name: "Docker", level: 70 },
-      { name: "REST API", level: 90 },
-      { name: "Azure", level: 65 },
+      { name: "Git", level: "Avanzato" },
+      { name: "Docker", level: "Intermedio" },
+      { name: "REST API", level: "Esperto" },
+      { name: "Azure", level: "Intermedio" },
+      { name: "VS Code", level: "Esperto" },
     ]
   }
 ];
 
-const getSkillColor = (level: number) => {
-  if (level >= 80) return "text-green-600";
-  if (level >= 60) return "text-yellow-600";
-  return "text-orange-600";
+const getLevelBadgeStyle = (level: string) => {
+  switch (level) {
+    case "Esperto":
+      return "bg-green-100 text-green-800 border-green-300";
+    case "Avanzato":
+      return "bg-blue-100 text-blue-800 border-blue-300";
+    case "Intermedio":
+      return "bg-yellow-100 text-yellow-800 border-yellow-300";
+    default:
+      return "bg-gray-100 text-gray-800 border-gray-300";
+  }
 };
 
 export const SkillsWindow = () => {
@@ -53,16 +61,13 @@ export const SkillsWindow = () => {
               {category.category}
             </h3>
             
-            <div className="grid gap-4">
+            <div className="grid gap-3">
               {category.skills.map((skill) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium text-foreground">{skill.name}</span>
-                    <span className={`text-sm font-semibold ${getSkillColor(skill.level)}`}>
-                      {skill.level}%
-                    </span>
-                  </div>
-                  <Progress value={skill.level} className="h-2" />
+                <div key={skill.name} className="flex justify-between items-center p-3 bg-muted/20 rounded-lg">
+                  <span className="font-medium text-foreground">{skill.name}</span>
+                  <span className={`px-3 py-1 text-xs font-medium rounded-full border ${getLevelBadgeStyle(skill.level)}`}>
+                    {skill.level}
+                  </span>
                 </div>
               ))}
             </div>
