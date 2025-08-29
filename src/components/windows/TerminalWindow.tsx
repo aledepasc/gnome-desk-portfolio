@@ -28,6 +28,76 @@ Projects:
 
 Contact me for collaboration opportunities!`;
 
+const movieQuotes = {
+  "may the force be with you": `
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠉⠉⠉⠙⠻⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣷⣤⣀⣀⣀⣀⣤⣾⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⢿⣿⣿⣿⣿⣿⡿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+    "May the Force be with you." - Star Wars`,
+  
+  "i'll be back": `
+    ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀
+    ⠀⠀⠀⢰⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⠛⠿⢿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀
+    ⠀⠀⠀⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⠀⠀⠀
+    ⠀⠀⢸⣿⣿⣿⣿⠁⢀⣀⣤⣤⣤⣤⣀⡀⠀⠀⠈⣿⣿⣿⣿⣿⡇⠀⠀
+    ⠀⠀⣿⣿⣿⣿⡇⠀⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢸⣿⣿⣿⣿⣿⠀⠀
+    ⠀⢸⣿⣿⣿⣿⡇⠀⠈⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⢸⣿⣿⣿⣿⣿⡇⠀
+    ⠀⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⠀
+    ⢸⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⡇
+    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    
+    "I'll be back." - Terminator`,
+    
+  "houston we have a problem": `
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⠟⠋⠉⠉⠋⠻⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣄⠀⠀⠀⠀⣠⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣷⣶⣶⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣀⣤⣶⣶⣶⣤⣄⠀⠀⠀⠀⣠⣤⣶⣶⣶⣤⣀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀
+    ⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠈⠙⠻⠿⠿⠟⠋⠀⠀⠀⠀⠙⠻⠿⠿⠟⠋⠁⠀⠀⠀⠀⠀
+
+    "Houston, we have a problem." - Apollo 13`,
+
+  "show me the money": `
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀
+    ⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀
+    ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀
+    ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀
+    ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀
+    ⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀
+    ⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⢿⣿⣿⣿⣿⡿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀
+    
+    "Show me the money!" - Jerry Maguire`
+};
+
 const commands = {
   help: `Available commands:
   cat resume.txt    - Display resume
@@ -36,7 +106,16 @@ const commands = {
   whoami           - Show current user
   clear            - Clear terminal
   neofetch         - System information
-  help             - Show this help`,
+  quotes           - Show available movie quotes
+  help             - Show this help
+  
+  Try typing famous movie quotes for easter eggs!`,
+  
+  quotes: `Available movie quotes (try typing them):
+  - "may the force be with you"
+  - "i'll be back"  
+  - "houston we have a problem"
+  - "show me the money"`,
   
   ls: `resume.txt  projects/  skills/  contact.txt`,
   pwd: `/home/edoardo`,
@@ -91,7 +170,10 @@ export const TerminalWindow = () => {
     
     let output = '';
     
-    if (cmd === 'cat resume.txt') {
+    // Check for movie quotes first
+    if (movieQuotes[cmd as keyof typeof movieQuotes]) {
+      output = movieQuotes[cmd as keyof typeof movieQuotes];
+    } else if (cmd === 'cat resume.txt') {
       output = resumeContent;
     } else if (cmd === 'clear') {
       setHistory([]);
@@ -104,7 +186,7 @@ export const TerminalWindow = () => {
       setCurrentInput('');
       return;
     } else {
-      output = `bash: ${cmd}: command not found\nType "help" for available commands.`;
+      output = `bash: ${cmd}: command not found\nType "help" for available commands or try typing a movie quote!`;
     }
     
     setHistory(prev => [...prev, { type: 'output', content: output }]);
