@@ -10,11 +10,12 @@ import { ExperienceWindow } from "./windows/ExperienceWindow";
 import { TerminalWindow } from "./windows/TerminalWindow";
 import { ProjectsWindow } from "./windows/ProjectsWindow";
 import { GalleryWindow } from "./windows/GalleryWindow";
-import { Monitor, Mail, Code, Briefcase, Image } from "lucide-react";
+import { BlogWindow } from "./windows/BlogWindow";
+import { Monitor, Mail, Code, Briefcase, Image, BookOpen } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import wallpaper from "@/assets/gnome-wallpaper.jpg";
 
-export type WindowType = 'personal' | 'contact' | 'skills' | 'experience' | 'terminal' | 'projects' | 'gallery';
+export type WindowType = 'personal' | 'contact' | 'skills' | 'experience' | 'terminal' | 'projects' | 'gallery' | 'blog';
 
 interface OpenWindow {
   id: string;
@@ -157,6 +158,8 @@ export const Desktop = () => {
         return <ProjectsWindow />;
       case 'gallery':
         return <GalleryWindow />;
+      case 'blog':
+        return <BlogWindow />;
       default:
         return <div>Window content</div>;
     }
@@ -216,6 +219,12 @@ export const Desktop = () => {
           icon={Image}
           label="Gallery"
           onClick={() => openWindow('gallery', 'Gallery')}
+          size={isMobile ? 'sm' : 'default'}
+        />
+        <DesktopIcon
+          icon={BookOpen}
+          label="Blog"
+          onClick={() => openWindow('blog', 'Blog')}
           size={isMobile ? 'sm' : 'default'}
         />
       </div>
