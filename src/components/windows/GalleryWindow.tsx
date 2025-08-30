@@ -92,9 +92,9 @@ export const GalleryWindow = () => {
         {filteredPhotos.map((photo) => (
           <div
             key={photo.id}
-            className="rounded-lg overflow-hidden bg-muted w-full"
+            className="rounded-lg overflow-hidden bg-muted w-full aspect-[3/4] flex flex-col"
           >
-            <div className="aspect-[3/4] overflow-hidden w-full">
+            <div className="flex-1 overflow-hidden">
               <img
                 src={photo.src}
                 alt={photo.title}
