@@ -90,16 +90,16 @@ export const SkillsWindow = () => {
   const categoryKeys = Object.keys(skillCategories) as Array<keyof typeof skillCategories>;
 
   return (
-    <div className="p-3 sm:p-6 h-full flex flex-col">
-      <div className="text-center mb-4 sm:mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Technical Skills</h2>
-        <p className="text-sm sm:text-base text-muted-foreground">
+    <div className="p-2 sm:p-4 h-full flex flex-col">
+      <div className="text-center mb-2 sm:mb-3">
+        <h2 className="text-lg sm:text-xl font-bold text-foreground mb-1">Technical Skills</h2>
+        <p className="text-xs sm:text-sm text-muted-foreground">
           Competenze tecniche organizzate per categoria professionale
         </p>
       </div>
 
       {/* Category Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4 sm:mb-6 p-2 sm:p-4 bg-muted/20 rounded-lg">
+      <div className="flex flex-wrap justify-center gap-1 mb-3 sm:mb-4 p-1 sm:p-2 bg-muted/20 rounded-lg">
         {categoryKeys.map((category) => (
           <Button
             key={category}
@@ -117,10 +117,10 @@ export const SkillsWindow = () => {
 
       {/* Active Category Content */}
       <div className="flex-1 overflow-y-auto">
-        <div className="space-y-3 sm:space-y-4">
-          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <span className="text-xl sm:text-2xl">{skillCategories[activeCategory].icon}</span>
-            <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center gap-2 mb-2 sm:mb-3">
+            <span className="text-lg sm:text-xl">{skillCategories[activeCategory].icon}</span>
+            <h3 className="text-base sm:text-lg font-semibold text-foreground">
               {skillCategories[activeCategory].title}
             </h3>
           </div>
