@@ -90,22 +90,21 @@ export const GalleryWindow = () => {
       {/* Photos Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 flex-1 overflow-auto">
         {filteredPhotos.map((photo) => (
-          <div
-            key={photo.id}
-            className="rounded-lg overflow-hidden bg-muted w-full aspect-[3/4] flex flex-col"
-          >
-            <div className="flex-1 overflow-hidden">
-              <img
-                src={photo.src}
-                alt={photo.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-3">
-              <h3 className="font-medium text-foreground text-sm mb-1">{photo.title}</h3>
-              <Badge variant="secondary" className="text-xs capitalize">
-                {photo.category}
-              </Badge>
+          <div key={photo.id} className="w-full">
+            <div className="rounded-lg overflow-hidden bg-muted aspect-[3/4] flex flex-col">
+              <div className="flex-1 overflow-hidden">
+                <img
+                  src={photo.src}
+                  alt={photo.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-3">
+                <h3 className="font-medium text-foreground text-sm mb-1">{photo.title}</h3>
+                <Badge variant="secondary" className="text-xs capitalize">
+                  {photo.category}
+                </Badge>
+              </div>
             </div>
           </div>
         ))}
