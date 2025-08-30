@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -89,45 +90,46 @@ export const SkillsWindow = () => {
   const categoryKeys = Object.keys(skillCategories) as Array<keyof typeof skillCategories>;
 
   return (
-    <div className="p-6 h-full flex flex-col">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-foreground mb-2">Technical Skills</h2>
-        <p className="text-muted-foreground">
+    <div className="p-3 sm:p-6 h-full flex flex-col">
+      <div className="text-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Technical Skills</h2>
+        <p className="text-sm sm:text-base text-muted-foreground">
           Competenze tecniche organizzate per categoria professionale
         </p>
       </div>
 
       {/* Category Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 mb-6 p-4 bg-muted/20 rounded-lg">
+      <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-4 sm:mb-6 p-2 sm:p-4 bg-muted/20 rounded-lg">
         {categoryKeys.map((category) => (
           <Button
             key={category}
             variant={activeCategory === category ? "default" : "outline"}
             size="sm"
             onClick={() => setActiveCategory(category)}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
           >
-            <span>{skillCategories[category].icon}</span>
-            {skillCategories[category].title}
+            <span className="text-sm sm:text-base">{skillCategories[category].icon}</span>
+            <span className="hidden sm:inline">{skillCategories[category].title}</span>
+            <span className="sm:hidden text-xs">{skillCategories[category].title.split(' ')[0]}</span>
           </Button>
         ))}
       </div>
 
       {/* Active Category Content */}
       <div className="flex-1 overflow-y-auto">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-2xl">{skillCategories[activeCategory].icon}</span>
-            <h3 className="text-xl font-semibold text-foreground">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <span className="text-xl sm:text-2xl">{skillCategories[activeCategory].icon}</span>
+            <h3 className="text-lg sm:text-xl font-semibold text-foreground">
               {skillCategories[activeCategory].title}
             </h3>
           </div>
           
-          <div className="grid gap-3">
+          <div className="grid gap-2 sm:gap-3">
             {skillCategories[activeCategory].skills.map((skill) => (
-              <div key={skill.name} className="flex justify-between items-center p-4 bg-card border border-border rounded-lg hover:bg-muted/30 transition-colors">
-                <span className="font-medium text-foreground">{skill.name}</span>
-                <Badge variant={getLevelBadgeVariant(skill.level)}>
+              <div key={skill.name} className="flex justify-between items-center p-3 sm:p-4 bg-card border border-border rounded-lg hover:bg-muted/30 transition-colors">
+                <span className="font-medium text-foreground text-sm sm:text-base">{skill.name}</span>
+                <Badge variant={getLevelBadgeVariant(skill.level)} className="text-xs">
                   {skill.level}
                 </Badge>
               </div>
@@ -137,10 +139,10 @@ export const SkillsWindow = () => {
       </div>
 
       {/* Stats Footer */}
-      <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-        <div className="flex justify-between items-center text-sm text-muted-foreground">
-          <span>Categoria attiva: {skillCategories[activeCategory].title}</span>
-          <span>{skillCategories[activeCategory].skills.length} competenze</span>
+      <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-muted/30 rounded-lg">
+        <div className="flex justify-between items-center text-xs sm:text-sm text-muted-foreground">
+          <span className="truncate">Categoria attiva: {skillCategories[activeCategory].title}</span>
+          <span className="flex-shrink-0 ml-2">{skillCategories[activeCategory].skills.length} competenze</span>
         </div>
       </div>
     </div>
